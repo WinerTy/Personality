@@ -1,3 +1,4 @@
+# Ссылка на бота: https://t.me/Currency_pyt_bot
 import telebot
 from telebot import types
 import requests
