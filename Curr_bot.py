@@ -1,11 +1,8 @@
 import telebot
 from telebot import types
-import json
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from icecream import ic
-
 
 class Bot:
     def __init__(self, token):
@@ -158,7 +155,6 @@ class Bot:
         if response.status_code == 200:
             data = response.json()
             self.bot.send_message(message.chat.id, f'Цена акции: {data["c"]}')
-            ic(data)
             return data['c']
         else:
             self.bot.send_message(message.chat.id, f'Ошибка: {response.status_code}')
