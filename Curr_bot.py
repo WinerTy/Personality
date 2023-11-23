@@ -155,7 +155,7 @@ class Bot:
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
-            self.bot.send_message(message.chat.id, f'Цена акции: {data["c"]}')
+            self.bot.send_message(message.chat.id, f'Цена выбраной акции: {data["c"]} рублей.\nЦена указана за 1 шт.')
             return data['c']
         else:
             self.bot.send_message(message.chat.id, f'Ошибка: {response.status_code}')
