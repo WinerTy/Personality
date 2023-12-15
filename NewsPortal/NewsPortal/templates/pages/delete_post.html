@@ -1,0 +1,11 @@
+{% extends 'pages/default.html' %}
+
+{% block content %}
+<h1>Удаление публикации</h1>
+<hr>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success"> Подтвердить удаление</button>
+</form>
+<span>{{ errors }}</span>
+{% endblock content %}

@@ -1,0 +1,26 @@
+.post-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post-block h1 {
+    padding-top: 40px;
+}
+
+.post-block p {
+    font-size: 24px;
+    text-align: justify;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

@@ -1,0 +1,43 @@
+{% extends 'pages/default.html' %}
+{% load Filters %}
+{% load static %}
+
+{% block content %}
+<form method="GET" action="{% url 'Find' %}">
+    {% csrf_token %}
+    <input type="search" name="Find_author" placeholder="Поиск по автору">
+    <input type="search" name="Find_title" placeholder="Поиск по названию">
+    <input type="date" name="Find_date" placeholder="Позже даты">
+    <button type="submit">Поиск</button>
+</form>
+    <main class="container">
+    <div class="row mb-2" style="gap: 10px">
+        {% if posts %}
+            {% for post in posts %}
+                    <div style="max-height: 600px; width: 49.6%;" class="col-md-6">
+                        <div style="height: 100%; width: 100%" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                {% if post.type.lower == 'news' %}
+                                    <strong class="d-inline-block mb-2 text-primary">{{ post.type }}</strong>
+                                {% else %}
+                                    <strong class="d-inline-block mb-2 text-success">{{ post.type }}</strong>
+                                {% endif %}
+                                <h3 class="mb-0">{{ post.title|truncatewords:7|censore }}</h3>
+                                <div class="mb-1 text-muted">{{ post.date|date:"d/m/Y" }}</div>
+                                <p class="card-text mb-auto">{{ post.text|truncatewords:7 }}</p>
+                                <p class="card-author mb-auto">{{ post.author }}</p>
+                                <a href="{% url 'Post Details' post.id %}" class="stretched-link">Подробнее...</a>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+                {% if posts.has_next %}
+                    <div class="post-visibility">
+                        <a href="{% url 'All_news' %}?page={{ posts.next_page_number}}">Больше новостей</a>
+                    </div>
+                {% endif %}
+        {% endif %}
+    </div>
+
+    </main>
+{% endblock %}

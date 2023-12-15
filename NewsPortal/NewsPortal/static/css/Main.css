@@ -1,0 +1,47 @@
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
+  gap: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 25px;
+}
+
+.post-card {
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    gap: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: None;
+    color: inherit;
+}
+
+a {
+    font-family: "Georgia",serif;
+    font-size: 30px;
+    text-decoration: None;
+    color: inherit;
+}
+
+h2 {
+    font-family: "Georgia",serif;
+    font-size: 10px ;
+}
+
+p {
+    font-family: "Georgia",serif;
+    font-size: 34px ;
+}
+
+.post-visibility {
+    align-items: center;
+}

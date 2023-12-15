@@ -1,0 +1,43 @@
+{% extends 'pages/default.html' %}
+{% load Filters %}
+{% load static %}
+
+
+{% block content %}
+    <main class="container">
+        <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4 fst-italic">Активность NewsPortal</h1>
+                <p class="lead my-3">Здесь опубликованы последние новости</p>
+                <p class="lead my-3">Полный список новостей можно найти в разделе все новости</p><!-- Добавить текст на главную страницу-->
+                <p class="lead mb-0"><a href="{% url 'All_news' %}" class="text-white fw-bold">Все новости</a></p>
+            </div>
+        </div>
+
+    <div class="row mb-2" style="gap: 10px">
+        {% if posts %}
+            {% for post in posts %}
+                    <div style="max-height: 600px; width: 49.6%;" class="col-md-6">
+                        <div style="height: 100%; width: 100%" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                {% if post.type.lower == 'news' %}
+                                    <strong class="d-inline-block mb-2 text-primary">{{ post.type }}</strong>
+                                {% else %}
+                                    <strong class="d-inline-block mb-2 text-success">{{ post.type }}</strong>
+                                {% endif %}
+                                <h3 class="mb-0">{{ post.title|truncatewords:7|censore }}</h3>
+                                <div class="mb-1 text-muted">{{ post.date|date:"d/m/Y" }}</div>
+                                <p class="card-text mb-auto">{{ post.text|truncatewords:7 }}</p>
+                                <p class="card-author mb-auto">{{ post.author }}</p>
+                                <a href="{% url 'Post Details' post.id %}" class="stretched-link">Подробнее...</a>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+                <div class="post-visibility">
+                    <a href="{% url 'All_news' %}">Больше новостей</a>
+                </div>
+        {% endif %}
+    </div>
+    </main>
+{% endblock %}
